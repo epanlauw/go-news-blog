@@ -2,6 +2,7 @@ package app
 
 import (
 	"blog-news/config"
+	"blog-news/lib/auth"
 
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/rs/zerolog/log"
@@ -19,4 +20,6 @@ func RunServer() {
 	// Cloudflare R2
 	cdfR2 := cfg.LoadAwsConfig()
 	_ = s3.NewFromConfig(cdfR2)
+
+	_ = auth.NewJwt(cfg)
 }
